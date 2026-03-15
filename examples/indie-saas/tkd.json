@@ -1,0 +1,98 @@
+{
+    "targets": {
+        "agents": [
+            "cursor",
+            "claude-code",
+            "copilot"
+        ],
+        "root": "."
+    },
+    "sources": {
+        "awesome_skills": "https://github.com/sickn33/antigravity-awesome-skills",
+        "anthropic": "https://github.com/anthropics/skills"
+    },
+    "skills": {
+        "anthropic/skills/claude-api": {
+            "include": "all"
+        },
+        "awesome_skills/skills/fastapi-pro": {
+            "include": "all"
+        },
+        "awesome_skills/skills/stripe-integration": {
+            "include": "all"
+        }
+    },
+    "rules": {
+        "awesome_skills/rules/api": {
+            "include": "all"
+        },
+        "awesome_skills/rules/mobile": {
+            "include": "all"
+        }
+    },
+    "commands": {
+        "awesome_skills/workflows/common": {
+            "include": "all"
+        }
+    },
+    "mcp": {
+        "stripe-mcp": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@stripe/mcp",
+                "--tools=all"
+            ],
+            "env": {
+                "STRIPE_SECRET_KEY": "${STRIPE_SK}"
+            }
+        },
+        "resend-email": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "resend-mcp"
+            ],
+            "env": {
+                "RESEND_API_KEY": "${RESEND_KEY}"
+            }
+        },
+        "supabase": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "supabase-mcp-server"
+            ],
+            "env": {
+                "SUPABASE_URL": "${SUPABASE_URL}",
+                "SUPABASE_SERVICE_KEY": "${SUPABASE_KEY}"
+            }
+        },
+        "sentry-issues": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@sentry/mcp-server"
+            ],
+            "env": {
+                "SENTRY_AUTH_TOKEN": "${SENTRY_TOKEN}"
+            }
+        }
+    },
+    "custom": {
+        "awesome_skills/capacitor": {
+            "include": [
+                "capacitor.config.ts"
+            ],
+            "scope": "root",
+            "dest": "./"
+        },
+        "awesome_skills/github": {
+            "include": [
+                "*"
+            ],
+            "scope": "root",
+            "dest": ".github/workflows/"
+        }
+    }
+}

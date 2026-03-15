@@ -1,0 +1,68 @@
+{
+  "targets": {
+    "agents": "*",
+    "root": "."
+  },
+  "sources": {
+    "awesome_skills": "https://github.com/sickn33/antigravity-awesome-skills",
+    "anthropic": "https://github.com/anthropics/skills",
+    "context7": "https://github.com/upstash/context7"
+  },
+  "skills": {
+    "anthropic/skills/claude-api": {
+      "include": "all"
+    },
+    "context7/skills/cli": {
+      "include": "all"
+    },
+    "awesome_skills/skills/fastapi-pro": {
+      "include": "all"
+    }
+  },
+  "rules": {
+    "awesome_skills/rules/python": {
+      "include": "all"
+    }
+  },
+  "mcp": {
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7"
+      ],
+      "env": {
+        "UPSTASH_REDIS_REST_URL": "${UPSTASH_URL}",
+        "UPSTASH_REDIS_REST_TOKEN": "${UPSTASH_TOKEN}"
+      }
+    }
+  },
+  "commands": {
+    "awesome_skills/workflows/full-review": {
+      "include": "all"
+    }
+  },
+  "custom": {
+    "awesome_skills/templates": {
+      "include": [
+        "*"
+      ],
+      "scope": "root",
+      "dest": ".github/workflow-templates/"
+    },
+    "awesome_skills/configs": {
+      "include": [
+        "lint-rules.json"
+      ],
+      "scope": "agents",
+      "dest": "configs/"
+    },
+    "awesome_skills/meta": {
+      "include": [
+        "project-context.txt"
+      ],
+      "scope": "root",
+      "dest": ".cursorignore"
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+    "targets": {
+        "agents": [
+            "claude-code",
+            "codex",
+            "gemini",
+            "copilot"
+        ],
+        "root": "."
+    },
+    "sources": {
+        "awesome_codes": "https://github.com/sickn33/antigravity-awesome-skills"
+    },
+    "skills": {
+        "awesome_codes/skills/api-design-principles": {
+            "include": "all"
+        },
+        "awesome_codes/skills/ab-test-setup": {
+            "include": "all"
+        }
+    },
+    "rules": {
+        "awesome_codes/rules/semver": {
+            "include": "all"
+        },
+        "awesome_codes/rules/public-api": {
+            "include": "all"
+        }
+    },
+    "commands": {
+        "release": "awesome_codes/commands/release.md",
+        "changelog": "awesome_codes/commands/changelog.md",
+        "awesome_codes/workflows/release": {
+            "include": "all"
+        }
+    },
+    "mcp": {
+        "npm-registry": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "npm-mcp-server"
+            ],
+            "env": {
+                "NPM_TOKEN": "${NPM_TOKEN}"
+            }
+        },
+        "github-issues": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-github"
+            ],
+            "env": {
+                "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+            }
+        }
+    },
+    "custom": {
+        "awesome_codes/ci": {
+            "include": [
+                "*"
+            ],
+            "scope": "root",
+            "dest": ".github/workflows/"
+        },
+        "awesome_codes/templates": {
+            "include": [
+                "CONTRIBUTING.md",
+                "SECURITY.md",
+                "CODE_OF_CONDUCT.md"
+            ],
+            "scope": "root",
+            "dest": "./"
+        }
+    }
+}

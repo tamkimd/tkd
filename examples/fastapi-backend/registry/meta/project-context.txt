@@ -1,0 +1,1 @@
+FastAPI backend with strict schema contracts, service boundaries, and CI validation.

@@ -1,0 +1,91 @@
+{
+    "targets": {
+        "agents": [
+            "cursor",
+            "claude-code",
+            "gemini",
+            "continue"
+        ],
+        "root": "."
+    },
+    "sources": {
+        "awesome_cursorrules": "https://github.com/PatrickJS/awesome-cursorrules",
+        "awesome_skills": "https://github.com/sickn33/antigravity-awesome-skills",
+        "ops": "https://github.com/wshobson/commands"
+    },
+    "skills": {
+        "awesome_skills/skills/python-fastapi-pro": {
+            "include": "all"
+        },
+        "awesome_skills/skills/ab-test-setup": {
+            "include": "all"
+        }
+    },
+    "rules": {
+        "awesome_cursorrules/rules/pytorch-best-practices-cursorrules-prompt-file": {
+            "include": "all"
+        },
+        "awesome_cursorrules/rules/numpy-vectorization-cursorrules-prompt-file": {
+            "include": "all"
+        },
+        "awesome_cursorrules/rules/pandas-method-chaining-cursorrules-prompt-file": {
+            "include": "all"
+        },
+        "ops/rules": {
+            "include": "all"
+        }
+    },
+    "commands": {
+        "ops/workflows": {
+            "include": "all"
+        }
+    },
+    "mcp": {
+        "huggingface-hub": {
+            "command": "uvx",
+            "args": [
+                "mcp-server-huggingface"
+            ],
+            "env": {
+                "HF_TOKEN": "${HUGGINGFACE_TOKEN}"
+            }
+        },
+        "wandb-experiments": {
+            "command": "uvx",
+            "args": [
+                "wandb-mcp-server"
+            ],
+            "env": {
+                "WANDB_API_KEY": "${WANDB_KEY}",
+                "WANDB_PROJECT": "main-experiments"
+            }
+        },
+        "jupyter-kernel": {
+            "command": "uvx",
+            "args": [
+                "jupyter-mcp-server"
+            ],
+            "env": {
+                "JUPYTER_URL": "http://localhost:8888",
+                "JUPYTER_TOKEN": "${JUPYTER_TOKEN}"
+            }
+        }
+    },
+    "custom": {
+        "ops/templates": {
+            "include": [
+                "*.ipynb"
+            ],
+            "scope": "root",
+            "dest": "templates/notebooks/"
+        },
+        "ops/configs": {
+            "include": [
+                "pyproject.toml",
+                ".pre-commit-config.yaml"
+            ],
+            "scope": "root",
+            "dest": "./"
+        }
+    }
+}
